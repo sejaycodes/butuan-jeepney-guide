@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Butuan City — Jeepney Route Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #7A1F1F;
+    --gold: #C9A227;
+    --black: #1A1A1A;
+    --moss: #3D4F45;
+    --cream: #EDE6D6;
+    --cream-dim: #E3DAC6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'Work Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Zilla Slab', serif;
+  }
+
+  /* ---------- plank line motif ---------- */
+  .plank-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+  .plank-lines span {
+    display: block;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+  }
+  .plank-lines span:nth-child(2) { width: 92%; margin-left: 4%; }
+  .plank-lines span:nth-child(3) { width: 78%; margin-left: 11%; }
+
+  /* ---------- header ---------- */
+  header {
+    padding: 20px 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(26,26,26,0.12);
+  }
+  .brand {
+    font-family: 'Zilla Slab', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+  }
+  .brand span { color: var(--red); }
+  nav a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-left: 28px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background: var(--black);
+    color: var(--cream);
+    padding: 90px 6vw 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  .hero p {
+    max-width: 480px;
+    margin: 0 auto 40px;
+    color: rgba(237,230,214,0.72);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .hero .plank-lines {
+    max-width: 420px;
+    margin: 0 auto;
+    color: var(--gold);
+  }
+  .hero .plank-lines span { opacity: 0.55; }
+
+  /* subtle woven-pattern accent, drawn not photographed */
+  .weave {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 1px, transparent 22px),
+                       repeating-linear-gradient(-45deg, var(--gold) 0, var(--gold) 1px, transparent 1px, transparent 22px);
+    pointer-events: none;
+  }
+
+  /* ---------- section label ---------- */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 6vw;
+    margin: 70px 0 30px;
+  }
+  .section-label h2 {
+    font-size: 0.85rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    color: var(--black);
+    white-space: nowrap;
+  }
+  .section-label .rule {
+    height: 1px;
+    background: rgba(26,26,26,0.18);
+    flex: 1;
+  }
+  .section-label .count {
+    font-size: 0.8rem;
+    color: var(--moss);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ---------- routes ---------- */
+  .routes {
+    padding: 0 6vw 30px;
+  }
+  .route-list {
+    border-top: 1px solid rgba(26,26,26,0.15);
+  }
+  .route {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 26px 8px;
+    border-bottom: 1px solid rgba(26,26,26,0.15);
+    transition: background 0.15s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  .route:hover { background: rgba(122,31,31,0.04); }
+  .route:hover .route-name { color: var(--red); }
+  .route-tag {
+    background: var(--red);
+    color: var(--cream);
+    font-family: 'Zilla Slab', serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+  }
+  .route-name {
+    font-family: 'Zilla Slab', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .route-name .via {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--moss);
+    display: block;
+    margin-top: 4px;
+  }
+  .route-meta {
+    text-align: right;
+    font-size: 0.8rem;
+    color: rgba(26,26,26,0.55);
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  .route-meta strong {
+    color: var(--gold);
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .route { grid-template-columns: 48px 1fr; }
+    .route-meta { grid-column: 2; text-align: left; margin-top: 6px; }
+  }
+
+  /* ---------- fare note strip ---------- */
+  .note-strip {
+    background: var(--moss);
+    color: var(--cream);
+    padding: 26px 6vw;
+    margin-top: 40px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .note-strip .item { max-width: 260px; }
+  .note-strip .item strong {
+    display: block;
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .note-strip .item p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba(237,230,214,0.85);
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    padding: 40px 6vw 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid rgba(26,26,26,0.12);
+  }
+  footer .plank-lines { max-width: 160px; color: var(--red); }
+  footer p {
+    font-size: 0.8rem;
+    color: rgba(26,26,26,0.5);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BUTUAN <span>ROUTES</span></div>
+  <nav>
+    <a href="#routes">Routes</a>
+    <a href="#fares">Fares</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="weave"></div>
+  <div class="eyebrow">Butuan City</div>
+  <h1>Jeepney Route Guide</h1>
+  <p>Seven rationalized routes connecting the barangays to the city proper — modeled after the Balangay's plank lines, home-grown for Butuanons.</p>
+  <div class="plank-lines"><span></span><span></span><span></span></div>
+</section>
+
+<div class="section-label">
+  <h2>Rationalized Routes</h2>
+  <div class="rule"></div>
+  <div class="count">07 routes</div>
+</div>
+
+<section class="routes" id="routes">
+  <div class="route-list">
+
+    <a class="route" href="route-01.html">
+      <div class="route-tag">01</div>
+      <div class="route-name">Libertad – City Proper
+        <span class="via">via J.C. Aquino Avenue</span>
+      </div>
+      <div class="route-meta"><strong>Fare</strong>₱13.00 base</div>
+    </a>
+
+    <div class="route">
+      <div class="route-tag">02</div>
+      <div class="route-name">Baan – Bading Loop
+        <span class="via">via Montilla Boulevard</span>
+      </div>
+      <div class="route-meta"><strong>Fare</strong>₱13.00 base</div>
+    </div>
+
+    <div class="route">
+      <div class="route-tag">03</div>
+      <div class="route-name">Ambago – City Proper
+        <span class="via">via T. Calo Avenue</span>
+      </div>
+      <div class="route-meta"><strong>Fare</strong>₱13.00 base</div>
+    </div>
+
+    <div class="route">
+      <div class="route-tag">04</div>
+      <div class="route-name">Doongan – Robinsons – City Proper
+        <span class="via">via San Francisco Street</span>
+      </div>
+      <div class="route-meta"><strong>Fare</strong>₱13.00 base</div>
+    </div>
+
+    <div class="route">
+      <div class="route-tag">05</div>
+      <div class="route-name">Villa Kananga – City Proper
+        <span class="via">via P. Burgos Street</span>
+      </div>
+      <div class="route-meta"><strong>Fare</strong>₱13.00 base</div>
+    </div>
+
+    <div class="route">
+      <div class="route-tag">06</div>
+      <div class="route-name">Agusan Pequeño – City Proper
+        <span class="via">via National Highway</span>
+      </div>
+      <div class="route-meta"><strong>Fare</strong>₱13.00 base</div>
+    </div>
+
+    <div class="route">
+      <div class="route-tag">07</div>
+      <div class="route-name">Obrero – Capitol – City Proper
+        <span class="via">via A.D. Curato Street</span>
+      </div>
+      <div class="route-meta"><strong>Fare</strong>₱13.00 base</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="note-strip" id="fares">
+  <div class="item">
+    <strong>Base fare</strong>
+    <p>First 4 kilometers. Add ₱1.50 per succeeding kilometer.</p>
+  </div>
+  <div class="item">
+    <strong>Discounts</strong>
+    <p>Students, senior citizens, and PWDs get 20% off the fare, city-wide.</p>
+  </div>
+  <div class="item">
+    <strong>Operating hours</strong>
+    <p>Most routes run 5:00 AM to 9:00 PM. Availability drops sharply after 8 PM.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="plank-lines"><span></span><span></span><span></span></div>
+  <p>Sample route data — swap in the official LTFRB / LPTRP list for accuracy.</p>
+</footer>
+
+</body>
+</html>
