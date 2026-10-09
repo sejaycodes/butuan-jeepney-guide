@@ -231,6 +231,32 @@
     margin-bottom: 16px;
   }
   .narrative p:last-child { margin-bottom: 0; }
+  
+  .route-warning {
+      padding: 20px 24px;
+      background: var(--cream-dim);
+      border: 4px solid var(--gold);
+      margin-bottom: 20px;
+  }
+
+  .route-warning h3 {
+      font-size: 1.1rem;
+      color: var(--red);
+      margin-bottom: 10px;
+  }
+
+  .route-warning p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(26, 26, 26, 0.8);
+      margin-bottom: 10px;
+  }
+
+  .route-warning p:last-child {
+      margin-bottom: 0;
+  }
+
+
 
   /* ---------- map placeholder ---------- */
   .map-block { padding: 0 6vw 10px; }
