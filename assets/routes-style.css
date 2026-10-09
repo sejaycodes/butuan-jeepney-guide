@@ -59,6 +59,16 @@
   .back-link a:hover { color: var(--red); }
 
   /* ---------- route hero ---------- */
+  .route-direction:not(:first-child) {
+    margin-top: 20px;
+  }
+  .route-direction {
+    margin: 0 0 8px;
+    font-family: 'Zilla Slab', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
   .route-hero {
     padding: 30px 6vw 60px;
     display: grid;
