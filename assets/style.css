@@ -156,8 +156,10 @@
     text-decoration: none;
     color: inherit;
   }
+  @media (hover: hover) {
   .route:hover { background: rgba(122,31,31,0.04); }
   .route:hover .route-name { color: var(--red); }
+  }
   .route-tag {
     background: var(--red);
     color: var(--cream);
@@ -202,9 +204,61 @@
   }
 
   @media (max-width: 640px) {
-    .route { grid-template-columns: 48px 1fr; }
-    .route-meta { grid-column: 2; text-align: left; margin-top: 6px; }
+    header {
+    padding: 14px 5vw;
+    flex-wrap: wrap;
+    gap: 8px 16px;
   }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+  }
+  nav a {
+    margin-left: 0;
+    padding: 10px 0;          /* ~44px tap target */
+    font-size: 0.8rem;
+  }
+
+  .hero { padding: 56px 5vw 48px; }
+  .hero p { font-size: 0.95rem; margin-bottom: 28px; }
+  .eyebrow { letter-spacing: 0.25em; font-size: 0.72rem; }
+
+  .section-label {
+    margin: 48px 0 20px;
+    gap: 12px;
+    padding: 0 5vw;
+  }
+  .section-label h2 {
+    white-space: normal;
+    letter-spacing: 0.18em;
+  }
+
+  .routes { padding: 0 5vw 20px; }
+  .route {
+    grid-template-columns: 44px 1fr;
+    gap: 6px 14px;
+    padding: 20px 0;
+  }
+  .route-name { font-size: 1.05rem; }
+  .route-meta {
+    grid-column: 2;
+    text-align: left;
+    white-space: normal;
+    font-size: 0.85rem;
+  }
+  .route-meta strong { font-size: 0.75rem; }
+
+  .note-strip {
+    flex-direction: column;
+    gap: 22px;
+    padding: 24px 5vw;
+  }
+  .note-strip .item { max-width: none; }
+
+  footer { padding: 32px 5vw 40px; text-align: center; }
+}
+
 
   /* ---------- fare note strip ---------- */
   .note-strip {
