@@ -65,42 +65,105 @@
     letter-spacing: 0.03em;
     text-transform: uppercase;
   }
+/* ---------- hero ---------- */
 
-  /* ---------- hero ---------- */
-  .hero {
-    background: var(--black);
-    color: var(--cream);
-    padding: 90px 6vw 70px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .eyebrow {
-    font-size: 0.8rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 18px;
-  }
-  .hero h1 {
-    font-size: clamp(2.4rem, 7vw, 5rem);
-    font-weight: 700;
-    line-height: 1.05;
-    margin-bottom: 22px;
-  }
-  .hero p {
-    max-width: 480px;
-    margin: 0 auto 40px;
-    color: rgba(237,230,214,0.72);
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-  .hero .plank-lines {
-    max-width: 420px;
-    margin: 0 auto;
-    color: var(--gold);
-  }
-  .hero .plank-lines span { opacity: 0.55; }
+.hero {
+  --navy: #174A78;
+  --gold: #E6B832;
+  --cream: #F5F2EA;
+  --slant: -5deg; /* Adjust slant angle here */
+
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  color: var(--cream);
+  text-align: center;
+}
+
+.hero-strip {
+  display: flex;
+  min-height: 480px;
+  position: relative;
+  overflow: hidden;
+  /* Pull slightly outward so the outermost angled edges bleed out cleanly */
+  margin: 0 -30px; 
+}
+
+.panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  transform: skewX(var(--slant));
+  border-right: 3px solid var(--gold);
+}
+
+.panel:last-child {
+  border-right: none;
+}
+
+/* Center text panel styling */
+.panel-center {
+  flex: 1.5 1 0; /* Give the text panel more width than the photo strips */
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 32px;
+}
+
+/* Counter-skew all content inside panels so images & text stay straight */
+.panel img,
+.panel .hero-content {
+  transform: skewX(calc(var(--slant) * -1));
+}
+
+.panel img {
+  display: block;
+  /* Widen image slightly to account for the counter-skew clipping */
+  width: calc(100% + 60px);
+  margin-left: -30px;
+  height: 100%;
+  min-height: 480px;
+  object-fit: cover;
+
+  image-rendering: auto;
+  transform: skewX(calc(var(--slant) * -1)) translateZ(0);
+  backface-visibility: hidden;
+}
+
+
+.hero-content {
+  max-width: 520px;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  color: var(--cream);
+  font-size: clamp(2rem, 3.5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 22px;
+}
+
+.hero p {
+  max-width: 440px;
+  margin: 0 auto;
+  color: rgba(245, 242, 234, 0.82);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
 
   /* subtle woven-pattern accent, drawn not photographed */
   .weave {
@@ -259,7 +322,9 @@
   }
   .note-strip .item { max-width: none; }
 
-  footer { padding: 32px 5vw 40px; text-align: center; }
+  footer { 
+    padding: 32px 5vw 40px; text-align: center; 
+  }
 }
 
 
@@ -290,7 +355,7 @@
 
   /* ---------- footer ---------- */
   footer {
-    padding: 40px 6vw 40px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -310,4 +375,23 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+  }
+
+  .footer-credits {
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.75);
+    line-height: 1.5;
+    border-top: 1px solid rgba(230, 184, 50, 0.2);
+    padding-top: 1rem;
+  }
+
+  .credits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  .credits-list a {
+    color: var(--gold);
+    text-decoration: underline;
   }
