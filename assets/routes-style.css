@@ -313,7 +313,6 @@
     gap: 12px;
     border-top: 1px solid rgba(26,26,26,0.12);
   }
-  footer .plank-lines { max-width: 160px; color: var(--red); }
   footer p { font-size: 0.8rem; color: rgba(26,26,26,0.5); }
 
   :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
