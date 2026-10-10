@@ -1,11 +1,14 @@
   :root {
-    --red: #7A1F1F;
-    --gold: #C9A227;
-    --black: #1A1A1A;
-    --moss: #3D4F45;
-    --cream: #EDE6D6;
-    --cream-dim: #E3DAC6;
-  }
+    --red: #A92D32;
+    --gold: #E6B832;
+    --black: #252C33;
+    --moss: #174A78;
+    --cream: #F5F2EA;
+    --cream-dim: #E8E3D8;
+
+    --boat-brown: #785039;
+    --surface: #FFFFFF;
+}
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -287,7 +290,7 @@
 
   /* ---------- footer ---------- */
   footer {
-    padding: 40px 6vw 50px;
+    padding: 40px 6vw 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
